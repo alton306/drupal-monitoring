@@ -1,0 +1,5 @@
+name: 'Monitoring Tool'
+type: module
+description: 'This module is used in tandem with the monitoring_data_collector to collect data about our clientssite'
+core_version_requirement: ^8 | ^9
+package: 'Custom'

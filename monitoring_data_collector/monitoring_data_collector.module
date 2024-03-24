@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains monitoring_data_collector.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function monitoring_data_collector_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the monitoring_data_collector module.
+    case 'help.page.monitoring_data_collector':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This Module is designed to sit on the clients website and report data back to the monitoring site with regards to Modules, Versions, Avaliable updates and any other relevent data we made need with regards to the site') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function monitoring_data_collector_theme() {
+  return [
+    'monitoring_data_collector' => [
+      'render element' => 'children',
+    ],
+  ];
+}

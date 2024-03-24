@@ -1,0 +1,13 @@
+{
+    "name": "monitoring_data_collector",
+    "type": "drupal-module",
+    "description": "This Module is designed to sit on the clients website and report data back to the monitoring site with regards to Modules, Versions, Avaliable updates and any other relevent data we made need with regards to the site",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/monitoring_data_collector",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/monitoring_data_collector",
+        "source": "http://cgit.drupalcode.org/monitoring_data_collector"
+    }
+}

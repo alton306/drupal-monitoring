@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * Contains monitoring_tool.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function monitoring_tool_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name) {
+        // Main module help for the monitoring_tool module.
+        case 'help.page.monitoring_tool':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('This module is used in tandem with the monitoring_data_collector to collect data about our clientssite') . '</p>';
+            return $output;
+
+        default:
+    }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function monitoring_tool_theme()
+{
+    return [
+        'monitoring_tool' => [
+            'render element' => 'children',
+        ],
+    ];
+}
+
+function monitoring_tool_cron()
+{
+    // cron job to check if all 3 daily forms have been completed
+    $runTime = \Drupal::state()->get('monitoring_tool.next_run', 0);
+    $nextRunTime = strtotime("tomorrow midnight");
+
+    // if (REQUEST_TIME > $runTime) {
+        // service Users update
+        $dataColectorService = \Drupal::Service('monitoring_tool.collect_data_service');
+        $SiteData = \Drupal::Service('monitoring_data_collector.site_data_collector');
+
+        // $inputData = json_encode($SiteData->generateReport());
+        // $data = json_decode($inputData, true);
+        foreach ($sites as $site) {
+            $dataColectorService->updateSiteNode(json_decode($dataColectorService->getSiteData($site->title),true));
+            // $dataColectorService->updateSiteNode(json_decode($inputData,true));
+        }
+        // Update last run.
+        \Drupal::state()->set('fluid_exemplar_reporting.next_run', $nextRunTime);
+    // }
+
+}
+
+function monitoring_tool_node_predelete(Drupal\Core\Entity\EntityInterface $node){
+    //deletes all Module nodes attached to the site
+    $referenceEntitys = $node->referencedEntities();
+    array_shift($referenceEntitys);
+    foreach($referenceEntitys as $referenceEntity){
+        if($referenceEntity->hasField('type')){
+            if($referenceEntity->get('type')->getValue()[0]['target_id'] == 'module'){
+                $referenceEntity->delete();
+            }
+        }
+        
+    }
+}

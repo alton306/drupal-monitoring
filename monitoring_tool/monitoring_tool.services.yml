@@ -1,0 +1,8 @@
+services:
+  logger.channel.monitoring_tool:
+    parent: logger.channel_base
+    arguments: ['monitoring_tool']
+    
+  monitoring_tool.collect_data_service:
+    class: Drupal\monitoring_tool\CollectDataService
+    arguments: []

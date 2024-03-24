@@ -1,0 +1,18 @@
+
+monitoring_data_collector.json_output_controller_jsonOutput:
+  path: '/monitoring_data_collector/jsonOutput'
+  defaults:
+    _controller: '\Drupal\monitoring_data_collector\Controller\JsonOutputController::jsonOutput'
+    _title: 'jsonOutput'
+  requirements:
+    _permission: 'access content'
+    _custom_access: '\Drupal\monitoring_data_collector\Controller\JsonOutputController::access'
+
+monitoring_data_collector.run_helper_commands:
+  path: '/monitoring_data_collector/RunHelperCommands/{command}'
+  defaults:
+    _controller: '\Drupal\monitoring_data_collector\Controller\RunHelperCommands::runCommand'
+    _title: 'Helper commands'
+  requirements:
+    _permission: 'access content'
+    _custom_access: '\Drupal\monitoring_data_collector\Controller\RunHelperCommands::access'

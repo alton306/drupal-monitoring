@@ -1,0 +1,5 @@
+name: 'Monitoring Data Collector'
+type: module
+description: 'This Module is designed to sit on the clients website and report data back to the monitoring site with regards to Modules, Versions, Avaliable updates and any other relevent data we made need with regards to the site'
+core_version_requirement: ^8 | ^9
+package: 'Custom'

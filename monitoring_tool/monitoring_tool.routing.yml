@@ -1,0 +1,24 @@
+
+monitoring_tool.test_controller_test:
+  path: '/monitoring_tool/test'
+  defaults:
+    _controller: '\Drupal\monitoring_tool\Controller\TestController::test'
+    _title: 'test'
+  requirements:
+    _permission: 'access content'
+
+monitoring_tool.add_site_form:
+  path: '/monitoring/site/add'
+  defaults:
+    _form: '\Drupal\monitoring_tool\Form\AddSiteForm'
+    _title: 'Add Site content type Form'
+  requirements:
+    _permission: 'access content'
+
+monitoring_tool.site_helper_functions_form:
+  path: '/crm/clients/{customerId}/add_contact_history'
+  defaults:
+    _form: '\Drupal\monitoring_tool\Form\SiteHelperFunctionsForm'
+    _title: 'Site Helper Functions Form'
+  requirements:
+    _role: 'administrator'
